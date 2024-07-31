@@ -17,5 +17,5 @@ ibm-watson
 dash[diskcache]
 configobj
 sentence-transformers
-Py2PDF2
+PyPDF2
 elasticsearch
