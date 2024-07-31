@@ -23,7 +23,7 @@ es = Elasticsearch(
             request_timeout=3600
         )
 
-def text_to_chunks(texts: str, chunk_length: int = 500, chunk_overlap: int = 100) -> list:
+def text_to_chunks(texts: str, chunk_length: int = 1000, chunk_overlap: int = 600) -> list:
         """
         Splits the text into equally distributed chunks with 25-word overlap.
         Args:
@@ -67,7 +67,7 @@ def upload_pdf_to_elasticsearch(file, file_name, index_name="colgate_palmolive")
     index = "search-colgate_elser"
     PIPELINE_NAME = "ml-inference-search-colgate_elser-_elser_model_2_linux-x86_64"#"ml-inference-colgate_palmolive-_elser_model_2_linux-x86_64"
     text = " ".join(page.extract_text() if page.extract_text() else "" for page in pdf_reader.pages)
-    chunks = text_to_chunks(texts=text, chunk_length=200, chunk_overlap=25)
+    chunks = text_to_chunks(texts=text, chunk_length=1000, chunk_overlap=600)
     action_chunks = []
     for i, chunk in enumerate(chunks):
         document = {
